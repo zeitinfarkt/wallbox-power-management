@@ -1,34 +1,7 @@
 # Wallbox Power Management
 
-# Required python modules
-#
-# Install the following python packages with pip install
-#
-# - requests
-# - pillow
-# - simple-namespace
-# - pytz
-# - python3-pil  
 
-
-# Waveshare 1.8" Display
-# Chip/Driver: ST7735
-# 1,8" TFT LCD
-# 160  x 128 Pixels
-#
-# Pin Connection
-# SainSmart  Display| Raspberry Pinleiste
-# -------------------------------------------
-# VCC        | Pin Nr. 1: 3,3V
-# GND        | Pin Nr. 6: GND
-# SCL        | Pin Nr. 23: SPI-CLK (GPIO 11)
-# SDA        | Pin Nr. 19: SPI-MOSI (GPIO 10)
-# DC         | Pin Nr. 18: (GPIO 24)
-# RES        | Pin Nr. 22: (GPIO 25)
-# CS         | Pin Nr. 24: SPI-CS0, PWM0 (GPIO 8)
-
-
-Motivation
+## Motivation
 
 Unfortunately, my local electricity provider did not approvee the installation of a 22kW charging station (wallbox). Only a maximum grid draw of 11kW was granted for my residence. Since I have installed a photovoltaic system with a peak power of 9,900 Watts I want to adjust (dynamically) the maximum wallbox charge power by the energy production by my PV system. For example, if the photovoltaic system produces 5,600 Watts I would like to allow the wallbix to charge with 15,500 Watts (11,000 + 5,600) .5kW to the wallbox.
 
