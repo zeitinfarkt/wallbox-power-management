@@ -1,31 +1,5 @@
 
-# Required python modules
-#
-# Install the following python packages with pip install
-#
-# - requests
-# - pillow
-# - simple-namespace
-# - pytz
-# - python3-pil  
-
-
-# Waveshare 1.8" Display
-# Chip/Driver: ST7735
-# 1,8" TFT LCD
-# 160  x 128 Pixels
-#
-# Pin Connection
-# SainSmart  Display| Raspberry Pinleiste
-# -------------------------------------------
-# VCC        | Pin Nr. 1: 3,3V
-# GND        | Pin Nr. 6: GND
-# SCL        | Pin Nr. 23: SPI-CLK (GPIO 11)
-# SDA        | Pin Nr. 19: SPI-MOSI (GPIO 10)
-# DC         | Pin Nr. 18: (GPIO 24)
-# RES        | Pin Nr. 22: (GPIO 25)
-# CS         | Pin Nr. 24: SPI-CS0, PWM0 (GPIO 8)
-
+#Wallbox Power Management
 
 Motivation
 
