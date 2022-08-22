@@ -1,6 +1,34 @@
 # Wallbox Power Management
 
-## Motivation
+# Required python modules
+#
+# Install the following python packages with pip install
+#
+# - requests
+# - pillow
+# - simple-namespace
+# - pytz
+# - python3-pil  
+
+
+# Waveshare 1.8" Display
+# Chip/Driver: ST7735
+# 1,8" TFT LCD
+# 160  x 128 Pixels
+#
+# Pin Connection
+# SainSmart  Display| Raspberry Pinleiste
+# -------------------------------------------
+# VCC        | Pin Nr. 1: 3,3V
+# GND        | Pin Nr. 6: GND
+# SCL        | Pin Nr. 23: SPI-CLK (GPIO 11)
+# SDA        | Pin Nr. 19: SPI-MOSI (GPIO 10)
+# DC         | Pin Nr. 18: (GPIO 24)
+# RES        | Pin Nr. 22: (GPIO 25)
+# CS         | Pin Nr. 24: SPI-CS0, PWM0 (GPIO 8)
+
+
+Motivation
 
 Unfortunately, my local electricity provider did not approvee the installation of a 22kW charging station (wallbox). Only a maximum grid draw of 11kW was granted for my residence. Since I have installed a photovoltaic system with a peak power of 9,900 Watts I want to adjust (dynamically) the maximum wallbox charge power by the energy production by my PV system. For example, if the photovoltaic system produces 5,600 Watts I would like to allow the wallbix to charge with 15,500 Watts (11,000 + 5,600) .5kW to the wallbox.
 
@@ -11,9 +39,24 @@ By default my Fronius inverter does not support the Vestel wallbox I have. There
 By default my Fronius inverter does not support any Vestel wallboxes.
 
 
-# The Photovoltaic System
+The Waveshare 1." LCD display is connected to the Raspberry Pi using a standard SPI cable.
+The LCD display uses a ST7735 driver chip and support a resolution of 160 by 128 pixels.
+The pins need to be connected like this:
 
-## Solar Modules
+  Pin Connection
+   Display | Raspberry Pin Head
+  -----------------------------------------
+  VCC      | Pin 1: 3,3V
+  GND      | Pin 6: GND
+  SCL      | Pin 23: SPI-CLK (GPIO 11)
+  SDA      | Pin 19: SPI-MOSI (GPIO 10)
+  DC       | Pin 18: (GPIO 24)
+  RES      | Pin 22: (GPIO 25)
+  CS       | Pin 24: SPI-CS0, PWM0 (GPIO 8)
+
+
+
+Photovoltaic System
 
 My photovoltaic system consists of Hanwa 28 Q-Cells solar modules which can produce a maximum peak power (Wp) of 9900 Watts at full sunlight. 
 The inverter device is a Fronius Symo 10.0-3-M. My wallbox is a Vestel  EVC04-AC22-T2P eMobility charging device.
