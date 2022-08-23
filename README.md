@@ -89,11 +89,66 @@ Our application is only interested in the JSOB object **Body/Inverters/1/P** tha
 
 | Wallbox| Vestel Wallbox EVC04 AC22|
 | :---: | :--- |
-| ![Vestel Wallbox EVC04 AC22 ](https://raw.githubusercontent.com/zeitinfarkt/wallbox-power-management/main/doc/img/Vestel-EVC04-AC22.png =250x)| The [Vestel EVC04-AC22-T2P eMobility](https://www.vestel-echarger.com/downloads/VESTEL_EVC04_Produktinformation_HomePlus22kW.pdf) wallbox is a 3-phase electic charger allowing a mximum charging power of 22kW (3 x 32A @ 400V). It includes a 5m 3-phase TYPE 2 charging cable. The wallbox has an integrated DC protection circuit and features RFID card support.
-
-|
+| ![Vestel Wallbox EVC04 AC22](https://raw.githubusercontent.com/zeitinfarkt/wallbox-power-management/main/doc/img/Vestel-EVC04-AC22.png =250x)| The [Vestel EVC04-AC22-T2P eMobility](https://www.vestel-echarger.com/downloads/VESTEL_EVC04_Produktinformation_HomePlus22kW.pdf) wallbox is a 3-phase electic charger allowing a mximum charging power of 22kW (3 x 32A @ 400V). It includes a 5m 3-phase TYPE 2 charging cable. The wallbox has an integrated DC protection circuit and features RFID card support.
 
 Most importantly, the Vestel wallbox supports a **Modbus TCP/RS-485** interface. Apparently, there is also a mobile app for Android and iOS to control the wallbox's charging process,
+
+#### Modbus TPC/IP
+The Vestel EVC04 charging station acts as a slave device in a Modbus TCP/IPnetwork.
+The charging station needs to be in the same network as the master device, or a proper routing rule has been applied. The router needs to assign a unique IP address to each charging station. The Modbus TCP communication port number for Vestel EVC04 charging station is **502**, the Modbus Unit ID is **255**. There can be only one active Modbus master connection at any time.
+
+The Modbus cables need to be connected like this:
+
+| Cable | Cable Color | Decription |
+| :--- | :--- | :--- |
+| 6 (CN20-2)| white - blue | A (COM) |
+| 5 (CN20-1)| blue | B (COM) |
+
+![Vestel Wallbox EVC04 AC22](https://raw.githubusercontent.com/zeitinfarkt/wallbox-power-management/main/doc/img/Vestel-Modbus-Connector.jpg)
+
+#### Slave Register Map
+
+The following table shows the Modbux registers of the Verstel EVC04 charging station.
+
+| Key | Register Address | Number of Registers | R/W | Data Type | Description | Unit |
+| :--- | :---: | :---: | :---: | :---: | :--- | :---: |
+| Serial Number | [100,124] | 25 | R | String | Serial Number, Currently 16 Digit | |
+| Chargepoint ID | [130,179] | 50 | R | String | Chargepoint ID |  |
+| Brand | [190,199] | 10 | R | String | Chargepoint Brand |  |
+| Model | [210,214] | 5 | R | String | Chargepoint Model |  |
+| Firmware Version | [230,279] | 50 | R | String | Firmware version |  |
+| Date | [290,291] | 2 | R | uint32 | Current date of CP | yymmdd |
+| Time | [294,295] | 2 | R | uint32 | Current time of CP | hhmmss |
+| Chargepoint Power | [400,401] | 2 | R | uint32 | Max power of Chargepoint | W |
+| Number of Phases | 404 | 1 | R | uint16 | 0: 1-phase , 1: 3-phase | |
+| Chargepoint State |  1000 |  1 | R | uint16 | 0: "Available", 1: "Preparing", 2: "Charging", 3: "SuspendedEVSE", 4: "SuspendedEV", 5: "Finishing", 6: "Reserved", 7: "Unavailable", 8: "Faulted" | |
+| Charging State | 1001 | 1 | R | uint16 | 0: Not Charging, State Ax, Bx, Dx or C1, 1: Charging, state C2 | |
+| Equipment State | 1002 | 1 | R | uint16 | 0: Initializing, 1: Running, 2: Fault, 3: Disabled, 4: Updating | |
+| Cable State | 1004 | 1 | R |  uint16 | 0: Cable not connected, 1: Cable connected, vehicle not connected, 2: Cable connected, vehicle connected, 3: Cable connected, vehicle connected, cable locked | |
+|EVSE Fault Code | 1006 | 1 | R | uint32 | 0: No fault, Other: Fault code | |
+| Current L1 | 1008 | 1 | R | uint16 | L1 Instantaneous Current | mA | 
+| Current L2 | 1010 | 1 | R | uint16 | L2 Instantaneous Current | mA |
+| Current L3 | 1012 | 1 | R | uint16 | L3 Instantaneous Current | mA |
+| Voltage L1 | 1014 | 1 | R | uint16 | L1 Voltage | V |
+| Voltage L2 | 1016 | 1 | R | uint16 | L2 Voltage | V |
+| Voltage L3 | 1018 | 1 | R | uint16 | L3 Voltage | V |
+| Active Power Total | [1020,1021] | 2 | R | uint32 | Total Active Power | W |
+| Active Power L1 | [1024,1025] | 2 | R | uint32 | L1 Active Power | W |
+| Active Power L2 | [1028,1029] | 2 | R | uint32 | L2 Active Power | W |
+| Active Power L3 | [1032,1033] | 2 | R | uint32 | L3 Active Power | W |
+| Meter Reading | [1036,1037] | 2 | R | uint32 | Meter Reading | 0.1 kWh |
+| Session Max Current | 1100 | 1 | R | uint16 | Max possible charging current for active session | A |
+| EVSE Min Current | 1102 | 1 | R | uint16 | Min possible charging current for EVSE | A |
+| EVSE Max Current | 1104 | 1 | R | uint16 | Max possible charging current for EVSE | A |
+| Cable Max Current | 1106 | 1 | R | uint16 | Max possible charging current for charging cable | A |
+| Session Energy | [1502,1503] | 2 | R | uint32 | Total Energy for current charging session | Wh |
+| Session Start Time | [1504,1505] | 2 | R | uint32 | Session start time | hhmmss | 
+| Session Duration | [1508,1509] | 2 | R | uint32 | Session duration | s | 
+| Session End Time | [1512,1513] | 2 | R | uint32 | Session end time | hhmmss | 
+| Failsafe Current | 2000 | 1 | R/W | uint16 | Failsafe charging current during communication failure | A |  
+| Failsafe Timeout | 2002 | 1 | R/W | uint16 | Communication timeout for switching to Failsafe charging current. If the timeout has occurred and the TCP socket is still active, TCP socket restarts. If set, Failsafe period is timeout/2, otherwise 20 sec. | s |
+Charging Current | 5004 | 1 | R/W | uint16 | Dynamic charging current | A
+| Alive Register | 6000 | 1 | R/W | uint16 | EMS (Master) writes 1 EVSE (Slave) writes 0, (EVSE checks this register at a period of (Failsafe Timeout)/2 for a value of 1, and sets it to 0. Period cannot go less than 3 seconds) | |
 
  
 # Hardware
@@ -224,3 +279,4 @@ sudo pip3 install pillow
 sudo pip3 install simple-namespace
 sudo pip3 install pytz
 ```
+
