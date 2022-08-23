@@ -81,9 +81,13 @@ Our application is only interested in the JSOB object **Body/Inverters/1/P** tha
 
 ## The Wallbox
 
-The [Vestel EVC04-AC22-T2P eMobility](https://www.vestel-echarger.com/downloads/VESTEL_EVC04_Produktinformation_HomePlus22kW.pdf)  wallbox is a 3-phase electic charger allowing a mximum charging power of 22kW (3 x 32A @ 400V). It includes a 5m 3-phase TYPE 2 charging cable. The wallbox has an integrated DC protection circuit and features RFID card support.
 
-Moost importantly, this vestel wallbox supports a Modbus TCP/RS-485 interface. Apparently there is a mobile app for Android and iOS to control the the wallbox,
+
+| Wallbox| Vestel Wallbox EVC04 AC22| 
+| :---:   | :---  | 
+| ![Vestel Wallbox EVC04 AC22 ](https://raw.githubusercontent.com/zeitinfarkt/wallbox-power-management/main/doc/img/Vestel-EVC04-AC22.png =250x)|	The [Vestel EVC04-AC22-T2P eMobility](https://www.vestel-echarger.com/downloads/VESTEL_EVC04_Produktinformation_HomePlus22kW.pdf)  wallbox is a 3-phase electic charger allowing a mximum charging power of 22kW (3 x 32A @ 400V). It includes a 5m 3-phase TYPE 2 charging cable. The wallbox has an integrated DC protection circuit and features RFID card support.
+|
+Most importantly, the Vestel wallbox supports a **Modbus TCP/RS-485** interface. Apparently, there is also  a mobile app for Android and iOS to control the wallbox's charging process,
 
 # Hardware
   
@@ -177,7 +181,7 @@ You should see the version number **2.60**. Otherwise your installation did not 
 
 #### LCD Module
 You need to install the following python modules to drive the Waveshare LCD display through the Raspberry's SPI interface
-```bash 
+```console
 sudo apt-get update
 sudo apt-get install python3-pip
 sudo apt-get install python3-pil
@@ -189,7 +193,7 @@ sudo pip3 install spidev
 
 The application requires the following Python packages to be installed:
 
-```bash
+```console
 sudo pip3 install requests
 sudo pip3 install python3-pil
 sudo pip3 install pillow
