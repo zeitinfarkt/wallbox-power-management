@@ -106,6 +106,8 @@ The Modbus cables need to be connected like this:
 
 ![Vestel Wallbox EVC04 AC22](https://raw.githubusercontent.com/zeitinfarkt/wallbox-power-management/main/doc/img/Vestel-Modbus-Connector.jpg)
 
+https://www.raspberry-pi-geek.de/ausgaben/rpg/2022/06/modbus-rtu-komponenten-per-io-broker-einbinden/
+
 #### Slave Register Map
 
 The following table shows the Modbux registers of the Verstel EVC04 charging station.
