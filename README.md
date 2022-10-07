@@ -203,7 +203,7 @@ Since I would like to see the status of the entire system I've decided to connec
 I have been designing a DIN Rail Mount housing embedding the Pi Zero and LCD Display. The model consists of six parts that can be 3D printed individually.
 
 DIN Rail Mount Case
-[Base](https://raw.githubusercontent.com/zeitinfarkt/wallbox-power-management/main/doc/cad/DIN%20Rail%20Mount%20PI-LCD\snapshots\base.jpg)
+[Base](https://raw.githubusercontent.com/zeitinfarkt/wallbox-power-management/main/doc/cad/DIN%20Rail%20Mount%20PI-LCD/snapshots/base.jpg)
 ## Software
 
 ### Raspberry Pi
